@@ -67,13 +67,18 @@ _ALLOWED_EXTS: dict[str, tuple[str, frozenset[str]]] = {
     ".xml": ("application/xml", frozenset({"text/xml"})),
     ".html": ("text/html", frozenset({"text/plain"})),
     ".htm": ("text/html", frozenset({"text/plain"})),
+    ".py": ("text/plain", frozenset({"text/x-python", "application/x-python"})),
+    ".ino": ("text/plain", frozenset()),
+    ".sh": ("text/plain", frozenset({"application/x-sh"})),
+    ".ts": ("text/plain", frozenset({"application/typescript"})),
+    ".js": ("text/plain", frozenset()),
 }
 
 # MIME types that are allowed to come back from the magic-byte sniffer
 # even though we don't know the canonical extension for them. Mostly
 # covers the "plain UTF-8 text" case where ``filetype`` returns ``None``
 # and we fall back to ``text/plain``.
-_TEXT_LIKE_EXTS = frozenset({".txt", ".md", ".csv", ".log", ".json", ".yaml", ".yml", ".xml", ".html", ".htm"})
+_TEXT_LIKE_EXTS = frozenset({".txt", ".md", ".csv", ".log", ".json", ".yaml", ".yml", ".xml", ".html", ".htm", ".py", ".ino", ".sh", ".ts", ".js"})
 
 # Ceiling on the cleaned filename. Long enough for human-readable names,
 # short enough to fit comfortably in a ``Content-Disposition`` header
